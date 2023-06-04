@@ -180,15 +180,15 @@ document.addEventListener("DOMContentLoaded", function () {
       realChild.style.alignItems = "center";
       realChild.style.justifyContent = "center";
 
-      if (isTouchDevice) {
+    //   if (isTouchDevice) {
         realChild.addEventListener("touchstart", handleTouchStart);
         realChild.addEventListener("touchmove", handleTouchMove);
         realChild.addEventListener("touchend", handleTouchEnd);
-      } else {
+      
         realChild.addEventListener("mousedown", handleMouseDown);
         realChild.addEventListener("mousemove", handleMouseMove);
         realChild.addEventListener("mouseup", handleMouseUp);
-      }
+      
       firstChild.appendChild(realChild);
     }
     parentContainer.appendChild(firstChild);
