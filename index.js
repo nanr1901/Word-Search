@@ -18,22 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "MUTTS",
     "PURI",
     "BADRI",
-    "ADVAITA",
-    "ARAAGDUMAHOM",
-    "MANDANAMISRA",
-    "IREGNIRS",
-    "AKATOT",
-    "ARAKNAS",
-    "AKARAWD",
-    "ANRUP",
-    "URUGAVIS",
-    "ADAPADNIVOG",
-    "ABMAYRA",
-    "MADNIVOGAJAHB",
-    "STTUM",
-    "IRUP",
-    "IRDAB",
-    "ATIAVDA",
+    "ADVAITA"
   ];
   const WordMatrix = [
     ["K", "T", "M", "N", "Z", "Q", "S", "O", "M", "T", "V", "L", "R", "T", "C"],
@@ -79,12 +64,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return cell.innerText;
       })
       .join("");
-    console.log(selectedWord);
+
+    let reverseSelectedWord = reverse(selectedWord)
+
+    console.log(reverseSelectedWord);
+
     if (words.includes(selectedWord)) {
       console.log("word matched", selectedWord);
       count = count + 1;
       highlightWord(selectedWord);
       if (count === 15) alert("Game over!");
+    }
+    else if (words.includes(reverseSelectedWord))
+    {
+        count = count + 1;
+        highlightWord(reverseSelectedWord);
+        if (count === 15) alert("Game over!");
+
     }
     selectedCells.forEach(function (cell) {
       cell.classList.remove("selected");
@@ -103,24 +99,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function handleTouchMove(event) {
     event.preventDefault()
-//     const touch =event.touches[0];
-//     const touchX = touch.clientX;
-//   const touchY = touch.clientY;
-//   const element = parentContainer.elementFromPoint(touchX, touchY);
-//   const cell = element.elementFromPoint(touchX,touchY);
-//   if (!selectedCells.includes(cell)) {
-//       selectCell(cell);
-//     }
   if (isDragging) {
-    //   const cell = event.target
-    //   console.log(cell)
     const touch = event.touches[0];
         const cell = document.elementFromPoint(touch.clientX, touch.clientY);
       if (!selectedCells.includes(cell) && cell.classList.contains("childClass")) {
         selectCell(cell);
       }
     }
-    // console.log(isDragging)
   }
 
   function handleTouchEnd() {
@@ -130,11 +115,22 @@ document.addEventListener("DOMContentLoaded", function () {
         return cell.innerText;
       })
       .join("");
-    console.log(selectedWord);
+      let reverseSelectedWord = reverse(selectedWord)
+
+      console.log(reverseSelectedWord);
+    
+
     if (words.includes(selectedWord)) {
       console.log("word matched", selectedWord);
       count = count + 1;
-      highlightWord();
+      highlightWord(selectedWord);
+      if (count === 15) alert("Game over!");
+    }
+    else if (words.includes(reverseSelectedWord))
+    {
+    console.log("word matched", selectedWord);
+      count = count + 1;
+      highlightWord(reverseSelectedWord);
       if (count === 15) alert("Game over!");
     }
     selectedCells.forEach((cell) => {
@@ -148,12 +144,26 @@ document.addEventListener("DOMContentLoaded", function () {
     selectedCells.push(cell); 
   }
 
-  function highlightWord() {
+  function highlightWord(selectedWord) {
     selectedCells.forEach(function (cell) {
       cell.classList.add("matched");
     });
+    // var reversedString=reverse(selectedWord);
+    // console.log(reversedString)
+    var over = document.querySelector("."+selectedWord)
+    over.style.backgroundColor="#98D8AA"
+    // console.log(over)
+    // var overRev=document.querySelector("."+reversedString)
+    // console.log(overRev)
+    // overRev.style.backgroundColor="#98D8AA"
   }
-
+  function reverse(str)
+  {
+    var splitString = str.split(""); 
+    var reverseArray = splitString.reverse(); 
+    var joinArray = reverseArray.join(""); 
+    return joinArray; 
+  }
   for (let i = 0; i < WordMatrix.length; i++) {
     const firstChild = document.createElement("div");
     firstChild.id = "container";
