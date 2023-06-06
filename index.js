@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var count = 0;
   var words = [
     "MOHAMUDGAARA",
-    "ARSIMANADNAM",
+    "MANDANAMISRA",
     "SRINGERI",
     "TOTAKA",
     "SANKARA",
